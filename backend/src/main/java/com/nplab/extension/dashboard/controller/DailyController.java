@@ -24,7 +24,16 @@ import com.nplab.extension.dashboard.service.SampleStatsService;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/dashboard")
-public class DailyController {
+public class
+
+
+
+
+
+
+
+
+DailyController {
 
 	private SampleStatsService sampleStatsService;
 	private JwtUtil jwtUtil;
