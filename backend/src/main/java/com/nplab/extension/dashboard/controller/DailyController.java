@@ -27,12 +27,6 @@ import com.nplab.extension.dashboard.service.SampleStatsService;
 public class
 
 
-
-
-
-
-
-
 DailyController {
 
 	private SampleStatsService sampleStatsService;

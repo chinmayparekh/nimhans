@@ -38,4 +38,13 @@ public class TestController {
         return testService.findBreakoutType(sampleType);
     }
 
+    @GetMapping(path = "/cases/assetDivision")
+    public List<Long> getSampleTypeStats( @RequestHeader(name = "Authorization") String token) {
+        token = token.substring(7);
+        if (jwtUtil.isTokenExpired(token)) {
+            throw new AccessDeniedException("Unauthorized");
+        }
+        return testService.findAssetDivisionCount();
+    }
+
 }

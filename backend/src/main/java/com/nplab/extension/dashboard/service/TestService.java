@@ -25,4 +25,11 @@ public class TestService {
         sampleTypeCount.add(assetSummaryDao.testFunctionLong("a.biopsyType like '%" + sampleType + "%'"));
         return sampleTypeCount;
     }
+
+    public List<Long> findAssetDivisionCount() {
+        List<Long> sampleTypeCount = new ArrayList<>();
+        sampleTypeCount.add(assetSummaryDao.testAssetDivision());
+        return sampleTypeCount;
+    }
+
 }

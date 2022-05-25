@@ -6,17 +6,15 @@
 
 package com.nplab.extension.dao;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-
+import com.nplab.extension.db.PendingAsset;
+import com.nplab.extension.db.RequestCount;
 import org.hibernate.query.Query;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.nplab.extension.db.AssetSummary;
-import com.nplab.extension.db.PendingAsset;
-import com.nplab.extension.db.RequestCount;
+import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 public class AssetSummaryDao {
@@ -94,6 +92,16 @@ public class AssetSummaryDao {
         return query.getResultList().get(0);
     }
 
+    public long countSamplesByCriteria(String criteria) {
+        Query<Long> query = (Query<Long>) entityManager
+                .createQuery(
+                        "SELECT COUNT(a) FROM AssetDivision a WHERE " + criteria
+                );
+
+        return query.getResultList().get(0);
+
+    }
+
     /**
      * @param criteria  (String) Specifications for entries (such as biopsy_type, tat range) which have
      *                  to be grouped by special request types in HQL syntax
@@ -146,15 +154,13 @@ public class AssetSummaryDao {
         return query.getResultList().get(0);
     }
 
-    public List<RequestCount> testFunction(String criteria) {
-        @SuppressWarnings("unchecked")
-        Query<RequestCount> query = (Query<RequestCount>) entityManager
+    public long testAssetDivision(){
+        Query<Long> query = (Query<Long>) entityManager
                 .createQuery(
-                        "SELECT NEW com.nplab.extension.db.RequestCount(a.requestCode, COUNT(a)) " +
-                                "FROM AssetSummary a WHERE " + criteria
+                        "SELECT COUNT(a) FROM AssetSummary a "
                 );
 
-        return query.getResultList();
+        return query.getResultList().get(0);
     }
 
 

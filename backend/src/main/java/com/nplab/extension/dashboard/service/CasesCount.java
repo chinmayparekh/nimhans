@@ -32,6 +32,7 @@ public class CasesCount {
                         from + "' AND '" + to + "'");
     }
 
+
     /**
      * Returns internal and external cases registered each day for the number of days specified
      * @param days Number of days, counting of cases is needed
