@@ -1,5 +1,6 @@
 /**
  * Service class for counting various types of cases based on origin, parity or none
+ *
  * @author Vaibhavi Lokagaonkar
  */
 package com.nplab.extension.dashboard.service;
@@ -25,7 +26,7 @@ public class CasesCount {
      */
     public CasesCount(String to, String from, AssetSummaryDao assetSummaryDao) {
         this.internalCasesCount = assetSummaryDao.countByCriteria(
-                "a.npNumber not like 'X%' AND a.startTime BETWEEN '"+ from + "' AND '" + to + "'");
+                "a.npNumber not like 'X%' AND a.startTime BETWEEN '" + from + "' AND '" + to + "'");
 
         this.externalCasesCount = assetSummaryDao.countByCriteria(
                 "a.npNumber like 'X%' AND a.startTime BETWEEN '" +
@@ -43,7 +44,7 @@ public class CasesCount {
         List<CasesCount> casesCount = new ArrayList<>();
         DateTime currentTime = new DateTime();
 
-        for (int i = 1; i <= days; i ++) {
+        for (int i = 1; i <= days; i++) {
             casesCount.add(new CasesCount(currentTime.minusDays(i - 1).toString().substring(0, 10),
                     currentTime.minusDays(i).toString().substring(0, 10), assetSummaryDao));
         }
@@ -71,15 +72,15 @@ public class CasesCount {
      * @return Number of cases registered in the current year
      */
     public static long countCurrentYear(AssetSummaryDao assetSummaryDao) {
-    	
-    	//commented below line
+
+        //commented below line
         //DateTime today = new DateTime("2020-02-28");
         Date myDate = new Date();
-	    SimpleDateFormat dmyFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-	    DateTime today = new DateTime(dmyFormat1.format(myDate));
+        SimpleDateFormat dmyFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        DateTime today = new DateTime(dmyFormat1.format(myDate));
         String todayDate = today.toString().substring(0, 10);
         return assetSummaryDao.countByCriteria(
-                "a.startTime >= '" + todayDate.substring(0,4) + "-01-01'"
+                "a.startTime >= '" + todayDate.substring(0, 4) + "-01-01'"
                         + " AND a.startTime <= '" + todayDate + "'");
     }
 
@@ -96,7 +97,6 @@ public class CasesCount {
     public long getExternalCasesCount() {
         return externalCasesCount;
     }
-
 
 
 }
