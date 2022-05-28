@@ -17,7 +17,7 @@ import com.nplab.extension.auth.JwtUtil;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api/dashboard")
 public class AssetDivisionController {
     private TestService testService;
     private JwtUtil jwtUtil;
@@ -28,25 +28,7 @@ public class AssetDivisionController {
         this.jwtUtil = jwtUtil;
     }
 
-    @GetMapping(path = "/cases/{sampleType}")
-    public List<Long> getSampleTypeStats(@PathVariable("sampleType") String sampleType, @RequestHeader(name = "Authorization") String token) {
-        token = token.substring(7);
-        if (jwtUtil.isTokenExpired(token)) {
-            throw new AccessDeniedException("Unauthorized");
-        }
-        return testService.findBreakoutType(sampleType);
-    }
-
-    @GetMapping(path = "/cases/assetDivision")
-    public List<Long> getSampleTypeStats(@RequestHeader(name = "Authorization") String token) {
-        token = token.substring(7);
-        if (jwtUtil.isTokenExpired(token)) {
-            throw new AccessDeniedException("Unauthorized");
-        }
-        return testService.findAssetDivisionCount();
-    }
-
-    @GetMapping(path = "/cases/{specimen}/{startTime}/{endTime}")
+    @GetMapping(path = "/assetDivision/{specimen}/{startTime}/{endTime}")
     public List<InternalAndExternalCases> getAssetDivision(@PathVariable("specimen") String specimen, @PathVariable("startTime") String from, @PathVariable("endTime") String to, @RequestHeader(name = "Authorization") String token) {
         token = token.substring(7);
         if (jwtUtil.isTokenExpired(token)) {
