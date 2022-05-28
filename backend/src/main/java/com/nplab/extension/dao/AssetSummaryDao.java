@@ -91,6 +91,16 @@ public class AssetSummaryDao {
 
         return query.getResultList().get(0);
     }
+    public long countByDateAndCriteriab(String criteria, String startTime, String endTime) {
+        @SuppressWarnings("unchecked")
+        Query<Long> query = (Query<Long>) entityManager
+                .createQuery(
+                        "SELECT COUNT(a) FROM AssetDivision a WHERE " + criteria +
+                                " AND a.startTime between '" + startTime + "' and '" + endTime + "'"
+                );
+
+        return query.getResultList().get(0);
+    }
 
     public long countSamplesByCriteria(String criteria) {
         Query<Long> query = (Query<Long>) entityManager

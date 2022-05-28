@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ExtensionBackend<extension>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.nplab.extension.ExtensionBackend",
+            "projectName": "extension",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
