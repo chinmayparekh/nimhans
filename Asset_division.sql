@@ -73,5 +73,4 @@ where EXISTS(select 1
 # create final asset_division
 create or replace view asset_division as
 select a.np_number,b.start_time,b.end_time,a.biopsy_type,a.specimen from asset a inner join transaction b on a.np_number=b.np_number;
-			
-##################
+
