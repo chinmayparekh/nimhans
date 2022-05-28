@@ -2,7 +2,7 @@ package com.nplab.extension.dashboard.controller;
 
 import java.util.List;
 
-import com.nplab.extension.db.AssetDivisionService;
+import com.nplab.extension.db.InternalAndExternalCases;
 import com.nplab.extension.dashboard.service.ReportAssets;
 import com.nplab.extension.dashboard.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ import com.nplab.extension.auth.JwtUtil;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/test")
-public class TestController {
+public class AssetDivisionController {
     private TestService testService;
     private JwtUtil jwtUtil;
 
     @Autowired
-    public TestController(TestService testService, JwtUtil jwtUtil) {
+    public AssetDivisionController(TestService testService, JwtUtil jwtUtil) {
         this.testService = testService;
         this.jwtUtil = jwtUtil;
     }
@@ -47,7 +47,7 @@ public class TestController {
     }
 
     @GetMapping(path = "/cases/{specimen}/{from}/{to}")
-    public List<AssetDivisionService> getAssetDivision(@PathVariable("specimen") String specimen, @PathVariable("from") String from, @PathVariable("to") String to, @RequestHeader(name = "Authorization") String token) {
+    public List<InternalAndExternalCases> getAssetDivision(@PathVariable("specimen") String specimen, @PathVariable("from") String from, @PathVariable("to") String to, @RequestHeader(name = "Authorization") String token) {
         token = token.substring(7);
         if (jwtUtil.isTokenExpired(token)) {
             throw new AccessDeniedException("Unauthorized");
