@@ -72,42 +72,6 @@ where EXISTS(select 1
 
 # create final asset_division
 create or replace view asset_division as
-select tat_table.np_number np_number,
-       start_time,
-       end_time,
-       biopsy_type,
-       specimen
-from (select np_number, start_time, end_time,
-             case when end_time is not null then TIMESTAMPDIFF(DAY, start_time, end_time) end TAT
-      from
-          (select start_tab.np_number np_number,
-                  start_time,
-                  case when start_tab.np_number like 'X%' then end_external.end_time else end_internal.end_time end end_time
-           from (select distinct (np_number) np_number, min(start_time) start_time
-                 from transaction
-                 where station_id = 1
-                   and np_number not like '%:%'
-                 group by np_number)start_tab
-                left outer join
-                (select distinct (np_number) np_number, max(end_time) end_time
-                 from transaction
-                 where station_id = 8
-                   and np_number not like 'X%'
-                 group by np_number) end_internal on start_tab.np_number = end_internal.np_number
-                 left outer join
-                (select distinct(np_number) np_number, max(end_time) end_time
-                 from transaction
-                 where station_id = 9
-                 group by np_number) end_external on start_tab.np_number = end_external.np_number) final_time) tat_table right outer join
-     (select np_number, biopsy_type, specimen 
-      from (select refer.np_number,
-                   biopsy_type,
-                   specimen
-            from (select ac.np_number as np_number,
-                         biopsy_type as biopsy_type,
-                         specimen as specimen
-                  from asset ac left join special_request sr on ac.np_number = SUBSTRING(sr.np_number, 1, LOCATE(':', sr.np_number) - 1)
-                  where ac.asset_type = 0) refer
-            group by refer.np_number) final) biopy_request_table on  tat_table.np_number = biopy_request_table.np_number;
+select a.np_number,b.start_time,b.end_time,a.biopsy_type,a.specimen from asset a inner join transaction b on a.np_number=b.np_number;
 			
 ##################

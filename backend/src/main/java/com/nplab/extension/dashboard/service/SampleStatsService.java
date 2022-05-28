@@ -20,6 +20,7 @@ public class SampleStatsService {
 	private AssetSummaryDao assetSummaryDao;
 	private ReportStats reportStats;
 	private PendingAssetStats pendingAssetsStats;
+	private AnnualReportService ans;
 	
 	private static Map<String, String> summaryCriteria = Map.ofEntries(Map.entry("tat", "a.tat is not null")); 
 	
@@ -28,6 +29,7 @@ public class SampleStatsService {
 		this.assetSummaryDao = assetSummaryDao;
 		this.reportStats = new ReportStats(assetSummaryDao);
 		this.pendingAssetsStats = new PendingAssetStats(assetSummaryDao);
+		this.ans= new AnnualReportService(assetSummaryDao);
 	}
 
 	/**
@@ -143,6 +145,9 @@ public class SampleStatsService {
 	 */
 	public List<Long> findSampleTypeBreakout(String startTime, String endTime) {
 		return this.reportStats.findBreakoutBySampleType(startTime, endTime);
+	}
+	public List<Long> findSampleTypeBreakoutb(String sptype,String startTime, String endTime) {
+		return this.ans.findBreakoutBySampleTypeb(sptype,startTime, endTime);
 	}
 
 	/**
