@@ -46,8 +46,8 @@ public class AssetDivisionController {
         return testService.findAssetDivisionCount();
     }
 
-    @GetMapping(path = "/cases/{specimen}/{from}/{to}")
-    public List<InternalAndExternalCases> getAssetDivision(@PathVariable("specimen") String specimen, @PathVariable("from") String from, @PathVariable("to") String to, @RequestHeader(name = "Authorization") String token) {
+    @GetMapping(path = "/cases/{specimen}/{startTime}/{endTime}")
+    public List<InternalAndExternalCases> getAssetDivision(@PathVariable("specimen") String specimen, @PathVariable("startTime") String from, @PathVariable("endTime") String to, @RequestHeader(name = "Authorization") String token) {
         token = token.substring(7);
         if (jwtUtil.isTokenExpired(token)) {
             throw new AccessDeniedException("Unauthorized");
