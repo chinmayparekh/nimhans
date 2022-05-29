@@ -18,6 +18,8 @@ import { TurnAroundTimeChartComponent } from './turn-around-time/turn-around-tim
 import { PendingInfoDialogComponent } from './pending-cases/pending-cases-table/pending-info-dialog/pending-info-dialog.component';
 import { SamplesComponent } from './samples/samples.component';
 import { PendingCasesComponent } from './pending-cases/pending-cases.component';
+import { AssetdivComponent } from './assetdiv/assetdiv.component';
+import { AnnualRepComponent } from './annual-rep/annual-rep.component';
 
 const COMPONENTS = [
   TurnAroundTimeComponent,
@@ -39,6 +41,8 @@ const COMPONENTS_DYNAMIC = [
   PendingAddfilterDialogComponent,
   PendingInfoDialogComponent,
   PendingCasesChartComponent,
+  AssetdivComponent,
+  AnnualRepComponent,
 ];
 
 @NgModule({
@@ -48,7 +52,7 @@ const COMPONENTS_DYNAMIC = [
     NgApexchartsModule,
     MatPaginatorModule,
   ],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, AssetdivComponent, AnnualRepComponent],
   entryComponents: COMPONENTS_DYNAMIC,
 })
 export class DashboardModule {}

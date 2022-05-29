@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { TurnAroundTimeComponent } from './turn-around-time/turn-around-time.component';
 import { SamplesComponent } from './samples/samples.component';
 import { PendingCasesComponent } from './pending-cases/pending-cases.component';
+import { AssetdivComponent } from './assetdiv/assetdiv.component';
+import { AnnualRepComponent } from './annual-rep/annual-rep.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,9 @@ const routes: Routes = [
   },
   { path: 'tat', component: TurnAroundTimeComponent },
   { path: 'pending-cases', component: PendingCasesComponent },
+  { path: 'annual-rep', component: AnnualRepComponent },
+  { path: 'assetdiv', component: AssetdivComponent },
+  
 ];
 
 @NgModule({
