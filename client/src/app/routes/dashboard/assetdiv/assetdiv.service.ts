@@ -21,9 +21,9 @@ export class AssetService {
 
   getJSON(): Observable<any> {
     return this.httpclient.get<any>(
-        this.serverUrl+'/api/dashboard/assetDivision/Tissue/2017-01-01/2020-01-01',
+        this.serverUrl+'/api/dashboard/assetDivision/Tissue/2020-01-01/2020-06-01',
         { headers: this.headers }
-    ); //NEED TO CHANGE
+    );
   }
 
   getStats(): Observable<statModel> {

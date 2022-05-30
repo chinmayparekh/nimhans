@@ -22,6 +22,9 @@ export type ChartOptions = {
 })
 export class AssetdivComponent implements OnInit {
 
+  data1=[];
+  data2 = [];
+
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
@@ -32,9 +35,16 @@ export class AssetdivComponent implements OnInit {
 
     this.assetService.getJSON().subscribe(data => {
       console.log(data);
+      for(var i=0; i<data.length; i++)
+      {
+        this.data1.push(data[i].internalCasesCount);
+        this.data2.push(data[i].externalCasesCount);
+      }
     });
 
-    console.log("SIKE");
+    
+    console.log("data1 ",this.data1);
+    console.log("data2 ",this.data2);
 
     this.initializeChart();
     this.populateChart();  
@@ -45,33 +55,42 @@ export class AssetdivComponent implements OnInit {
       this.chartOptions = {
         series: [
           {
-            name: "Samples",
-            data: []
+            name: "Internal Samples",
+            data: [],
+          },
+          {
+            name: "External Samples",
+            data: [],
           }
         ],
         chart: {
           height: 350,
-          type: "bar"
+          type: "bar",
         },
         title: {
           text: "Sample Chart"
         },
         xaxis: {
-          categories: ["Jan", "Feb",  "Mar"]
+          categories: ["Jan", "Feb",  "Mar", "Apr", "May", "June"],
         }
       };
     }
 
     private populateChart():void
     {
+      console.log(typeof(this.data1));
+      console.log(typeof(this.data2));
+      console.log(typeof([1,2,4,4,5]));
       this.chartOptions.series=
         [{
-          name: "Sample1",
-          data: [69, 43, 17]
+          name: "Internal Samples",
+          // data: [1,2,3,4,5,6],
+          data: this.data1,
         },
         {
-          name: "Sample2",
-          data: [33, 15, 69]
+          name: "External Samples",
+          // data: [2,4,6,8,9,1],
+          data:this.data2,
         }];
       
     }
