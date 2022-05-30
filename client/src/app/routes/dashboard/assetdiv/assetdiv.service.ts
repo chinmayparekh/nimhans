@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class SamplesService {
+export class AssetService {
   constructor(private httpclient: HttpClient, private token: TokenService) {}
   public serverUrl= 'http://localhost:8080';
   //public serverUrl= 'http://10.11.3.160/npdashboard';
@@ -17,6 +17,14 @@ export class SamplesService {
     Accept: 'application/json',
     'Access-Control-Allow-Headers': '*',
   });
+
+
+  getJSON(): Observable<any> {
+    return this.httpclient.get<any>(
+        this.serverUrl+'/api/dashboard/assetDivision/Tissue/2017-01-01/2020-01-01',
+        { headers: this.headers }
+    ); //NEED TO CHANGE
+  }
 
   getStats(): Observable<statModel> {
     return this.httpclient.get<statModel>(

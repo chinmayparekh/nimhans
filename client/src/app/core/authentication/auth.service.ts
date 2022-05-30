@@ -11,7 +11,7 @@ import { guest } from './user';
 })
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
-  public serverUrl= 'http://localhost:8081';
+  public serverUrl= 'http://localhost:8080';
   //public serverUrl= 'http://10.11.3.160/npdashboard';
 
   private userReq$ = this.http.get<User>(this.serverUrl+'/authenticate/me');

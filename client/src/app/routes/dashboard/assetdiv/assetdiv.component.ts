@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
-import { Observable } from 'rxjs';
+import { AssetService } from './assetdiv.service';
 
 import {
   ChartComponent,
@@ -26,12 +25,12 @@ export class AssetdivComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private assetService: AssetService) { }
 
   ngOnInit(): void 
   {
 
-    this.getJSON().subscribe(data => {
+    this.assetService.getJSON().subscribe(data => {
       console.log(data);
     });
 
@@ -39,11 +38,6 @@ export class AssetdivComponent implements OnInit {
 
     this.initializeChart();
     this.populateChart();  
-  }
-
-  public getJSON(): Observable<any> 
-  {
-    return this.http.get("http://localhost:4200/api/dashboard/assetDivision/{specimen}/{startTime}/{endTime}"); //NEED TO CHANGE
   }
 
     private initializeChart():void

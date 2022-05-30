@@ -32,7 +32,7 @@ export class PendingCasesService {
     type_id: 28821,
   });
   constructor(private httpclient: HttpClient, private token: TokenService) {}
-  public serverUrl= 'http://localhost:8081';
+  public serverUrl= 'http://localhost:8080';
   //public serverUrl= 'http://10.11.3.160/npdashboard';
    //public serverUrlNP= 'http://l0.11.3.3:8080/Sample_Tracker/webapi';
    public serverUrlNP= 'http://localhost:8080/Sample_Tracker/webapi';
