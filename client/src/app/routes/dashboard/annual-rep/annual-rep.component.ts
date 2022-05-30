@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-annual-rep',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnualRepComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
