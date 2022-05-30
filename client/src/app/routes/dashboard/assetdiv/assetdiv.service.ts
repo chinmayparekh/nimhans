@@ -19,9 +19,9 @@ export class AssetService {
   });
 
 
-  getJSON(): Observable<any> {
+  getJSON(startd :any, end :any): Observable<any> {
     return this.httpclient.get<any>(
-        this.serverUrl+'/api/dashboard/assetDivision/Tissue/2020-01-01/2020-06-01',
+        this.serverUrl+`/api/dashboard/assetDivision/Tissue/${startd}/${end}`,
         { headers: this.headers }
     );
   }
