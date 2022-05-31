@@ -26,6 +26,13 @@ export class AssetService {
     );
   }
 
+  getAnnualRep(startd :any, end :any): Observable<any> {
+    return this.httpclient.get<any>(
+        this.serverUrl+`/api/dashboard/cases/Tissue/${startd}/${end}`,
+        { headers: this.headers }
+    );
+  }
+
   getStats(): Observable<statModel> {
     return this.httpclient.get<statModel>(
       this.serverUrl+'/api/dashboard/summary/tat',

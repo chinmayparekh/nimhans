@@ -1,1 +1,22 @@
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit esse perspiciatis ullam non, dolore incidunt, commodi debitis assumenda praesentium aspernatur porro similique vero quidem consectetur, saepe aliquid omnis maxime sed.</p>
+<breadcrumb></breadcrumb>
+
+<!-- <div class="matero-row" fxLayout="row wrap">
+  <div class="matero-col" fxFlex="100">
+    <app-chart-card>
+    <app-assetdiv chart-content></app-assetdiv>
+    <app-date-range-picker date-range></app-date-range-picker>
+  </app-chart-card>
+  </div> -->
+<!-- </div> -->
+<mat-card>
+  <app-date-range-picker date-range></app-date-range-picker>
+  <div style="text-align:center">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
+</mat-card>
+  
