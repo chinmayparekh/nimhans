@@ -15,6 +15,7 @@ export type ChartOptions = {series: ApexAxisChartSeries; chart: ApexChart; xaxis
 
 export class AssetdivComponent implements OnInit {
   startDate:any;
+  specType: string;
   endDate:any;
   data1=[]; //Internal Samples
   data2 = []; //External Samples
@@ -46,17 +47,24 @@ export class AssetdivComponent implements OnInit {
       this.data1=[];
       this.data2 = [];
       this.newCategories=[];
-      this.sendReq(this.startDate, this.endDate); //Sends HTTP GET Request to get Sample Data
+      this.sendReq(this.startDate, this.endDate, this.specType); //Sends HTTP GET Request to get Sample Data
       console.log("cat", this.newCategories);
     });
 
 
     // console.log("Date", this.startDate);
   }
-  private sendReq(startd :any , endd : any):void
+
+  selectChangeHandler(event:any)
   {
+    this.specType = event.target.value;
+  }
+
+  private sendReq(startd :any , endd : any, specType:string):void
+  {
+    console.log("specType ", this.specType);
     //HTTP GET Request
-    this.assetService.getJSON(startd, endd).subscribe(data => {
+    this.assetService.getJSON(startd, endd, specType).subscribe(data => {
       console.log(data);
     this.numMonths = data.length;
     var startMonth = parseInt(startd.slice(5,7)) -1;

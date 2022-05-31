@@ -101,7 +101,16 @@ export class AnnualRepComponent implements OnInit {
           text: "Sample Chart"
         },
         xaxis: {
-          categories: [],
+          categories: [
+            'Tumor',
+            'Nerve',
+            'Muscle',
+            'Multiple Biopsies',
+            'Epilepsy',
+            'Block',
+            'Slides',
+            'Other',
+          ],
         }
       };
     }
@@ -125,7 +134,16 @@ export class AnnualRepComponent implements OnInit {
           text: "Sample Chart"
         },
         xaxis: {
-          categories: this.newCategories,
+          categories: [
+            'Tumor',
+            'Nerve',
+            'Muscle',
+            'Multiple Biopsies',
+            'Epilepsy',
+            'Block',
+            'Slides',
+            'Other',
+          ],
         }
       };
       

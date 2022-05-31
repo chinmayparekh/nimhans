@@ -19,9 +19,9 @@ export class AssetService {
   });
 
 
-  getJSON(startd :any, end :any): Observable<any> {
+  getJSON(startd :any, end :any, specType:string): Observable<any> {
     return this.httpclient.get<any>(
-        this.serverUrl+`/api/dashboard/assetDivision/Tissue/${startd}/${end}`,
+        this.serverUrl+`/api/dashboard/assetDivision/${specType}/${startd}/${end}`,
         { headers: this.headers }
     );
   }
