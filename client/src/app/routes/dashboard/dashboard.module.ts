@@ -44,6 +44,7 @@ const COMPONENTS_DYNAMIC = [
   PendingCasesChartComponent,
   AssetdivComponent,
   AnnualRepComponent,
+  DropdownMenuComponent,
 ];
 
 @NgModule({

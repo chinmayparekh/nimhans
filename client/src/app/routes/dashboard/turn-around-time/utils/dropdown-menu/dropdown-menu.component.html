@@ -3,10 +3,10 @@
     <h5>Specimen Type:</h5>
     <mat-form-field appearance="fill">
       <mat-label>Specimen</mat-label>
-      <mat-select [(ngModel)]="selectedValue" name="spec">
-        <mat-option *ngFor="let spec of specs" [value]="spec.value">
-          {{spec.viewValue}}
-        </mat-option>
+      <mat-select [(value)]="specType">
+        <mat-option value="None">None</mat-option>
+        <mat-option value="Sheet">Sheet</mat-option>
+        <mat-option value="Tissue">Tissue</mat-option>
       </mat-select>
     </mat-form-field>
-    <p> Selected Specimen: {{selectedValue}} </p>
+    <p>Selected Specimen: {{specType}}</p>

@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AssetService } from './assetdiv.service';
 import { DatePipe } from '@angular/common';
 import { TurnAroundTimeService } from '../turn-around-time/turn-around-time.service';
-import {ChartComponent,ApexAxisChartSeries,ApexChart,ApexXAxis,ApexTitleSubtitle} from "ng-apexcharts";
+import {ChartComponent, ApexAxisChartSeries, ApexChart,ApexXAxis, ApexTitleSubtitle} from "ng-apexcharts";
+import { DropdownMenuComponent } from '../turn-around-time/utils/dropdown-menu/dropdown-menu.component';
 import { start } from 'repl';
 
 export type ChartOptions = {series: ApexAxisChartSeries; chart: ApexChart; xaxis: ApexXAxis; title: ApexTitleSubtitle;};
@@ -16,6 +17,7 @@ export type ChartOptions = {series: ApexAxisChartSeries; chart: ApexChart; xaxis
 export class AssetdivComponent implements OnInit {
   startDate:any;
   endDate:any;
+  dropdown = new DropdownMenuComponent();
   data1=[]; //Internal Samples
   data2 = []; //External Samples
   newCategories=[];
@@ -46,17 +48,18 @@ export class AssetdivComponent implements OnInit {
       this.data1=[];
       this.data2 = [];
       this.newCategories=[];
-      this.sendReq(this.startDate, this.endDate); //Sends HTTP GET Request to get Sample Data
+      this.sendReq(this.startDate, this.endDate, this.dropdown.specType); //Sends HTTP GET Request to get Sample Data
       console.log("cat", this.newCategories);
     });
 
 
     // console.log("Date", this.startDate);
   }
-  private sendReq(startd :any , endd : any):void
+  private sendReq(startd :any , endd : any, specType : string):void
   {
+    console.log("Spec Type", specType);
     //HTTP GET Request
-    this.assetService.getJSON(startd, endd).subscribe(data => {
+    this.assetService.getJSON(startd, endd, specType).subscribe(data => {
       console.log(data);
     this.numMonths = data.length;
     var startMonth = parseInt(startd.slice(5,7)) -1;
