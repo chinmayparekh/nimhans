@@ -20,6 +20,7 @@ import { SamplesComponent } from './samples/samples.component';
 import { PendingCasesComponent } from './pending-cases/pending-cases.component';
 import { AssetdivComponent } from './assetdiv/assetdiv.component';
 import { AnnualRepComponent } from './annual-rep/annual-rep.component';
+import { DropdownMenuComponent } from './turn-around-time/utils/dropdown-menu/dropdown-menu.component';
 
 const COMPONENTS = [
   TurnAroundTimeComponent,
@@ -52,7 +53,7 @@ const COMPONENTS_DYNAMIC = [
     NgApexchartsModule,
     MatPaginatorModule,
   ],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, AssetdivComponent, AnnualRepComponent],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, AssetdivComponent, AnnualRepComponent, DropdownMenuComponent],
   entryComponents: COMPONENTS_DYNAMIC,
 })
 export class DashboardModule {}
