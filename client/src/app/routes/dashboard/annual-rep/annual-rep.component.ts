@@ -14,7 +14,7 @@ export type ChartOptions = {series: ApexAxisChartSeries; chart: ApexChart; xaxis
   styleUrls: ['./annual-rep.component.scss']
 })
 export class AnnualRepComponent implements OnInit {
-
+  specType: string;
   startDate:any;
   endDate:any;
   newdata=[]; 
@@ -45,17 +45,24 @@ export class AnnualRepComponent implements OnInit {
       this.endDate = dates[1];
       // this.newdata=[];
       this.newCategories=[];
-      this.sendReq(this.startDate, this.endDate); //Sends HTTP GET Request to get Sample Data
+      this.sendReq(this.startDate, this.endDate, this.specType); //Sends HTTP GET Request to get Sample Data
       console.log("cat", this.newCategories);
     });
 
 
     // console.log("Date", this.startDate);
   }
-  private sendReq(startd :any , endd : any):void
+
+  selectChangeHandler(event:any)
   {
+    this.specType = event.target.value;
+  }
+
+  private sendReq(startd :any , endd : any, specType:string):void
+  {
+    console.log("specType ", this.specType);
     //HTTP GET Request
-    this.assetService.getAnnualRep(startd, endd).subscribe(data => {
+    this.assetService.getAnnualRep(startd, endd, specType).subscribe(data => {
     this.numMonths = data.length;
     this.newdata =[...data];
     var startMonth = parseInt(startd.slice(5,7)) -1;

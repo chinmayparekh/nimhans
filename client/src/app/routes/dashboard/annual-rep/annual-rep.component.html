@@ -10,6 +10,16 @@
 <!-- </div> -->
 <mat-card>
   <app-date-range-picker date-range></app-date-range-picker>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a Specimen</mat-label>
+      <mat-select [(value)]="specType">
+        <mat-option value="Tissue">Tissue</mat-option>
+        <mat-option value="Sheet">Sheet</mat-option>
+        <mat-option value="Block">Block</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div style="text-align:center">
     <apx-chart
       [series]="chartOptions.series"
