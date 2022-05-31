@@ -8,9 +8,21 @@
   </app-chart-card>
   </div> -->
 <!-- </div> -->
+<!-- <mat-slide-toggle
+*ngIf="showToggle"
+[checked]="toggleChecked"
+(change)="toggleCollapsed.emit()"
+>
+</mat-slide-toggle>
+ -->
+
 <mat-card>
+  
   <app-date-range-picker date-range></app-date-range-picker>
+  <app-dropdown-menu> dropdown menu</app-dropdown-menu>
+  <!-- <app-sidemenu [ripple]="showToggle"></app-sidemenu> -->
   <div style="text-align:center">
+  
     <apx-chart
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
