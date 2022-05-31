@@ -48,7 +48,6 @@ export class AssetdivComponent implements OnInit {
       this.newCategories=[];
       this.sendReq(this.startDate, this.endDate); //Sends HTTP GET Request to get Sample Data
       console.log("cat", this.newCategories);
-      this.populateChart(); // Fills chart with Data fetched previously
     });
 
 
@@ -84,6 +83,7 @@ export class AssetdivComponent implements OnInit {
           startMonth++;
         }
     }
+    this.populateChart(); // Fills chart with Data fetched previously
     });
   }
 
