@@ -1,24 +1,26 @@
 <breadcrumb></breadcrumb>
 
-<!-- <div class="matero-row" fxLayout="row wrap">
-  <div class="matero-col" fxFlex="100">
-    <app-chart-card>
-    <app-assetdiv chart-content></app-assetdiv>
-    <app-date-range-picker date-range></app-date-range-picker>
-  </app-chart-card>
-  </div> -->
-<!-- </div> -->
 <mat-card>
-  <app-date-range-picker date-range></app-date-range-picker>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Choose a Specimen</mat-label>
-      <mat-select [(value)]="specType">
-        <mat-option value="Tissue">Tissue</mat-option>
-        <mat-option value="Sheet">Sheet</mat-option>
-        <mat-option value="Block">Block</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="flex-container">
+  <!-- <div>
+    <select (change) = "selectChangeHandler($event)">
+      <option value="Tissue" >Tissue</option>
+      <option value="Sheet" >Sheet</option>
+      <option value="Block" >Block</option>
+    </select>
+  </div> -->
+  <!-- <div style="text-align: left;"> -->
+  <div style="text-align: left">
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a Specimen</mat-label>
+    <mat-select [(value)]="specType">
+      <mat-option value="Tissue">Tissue</mat-option>
+      <mat-option value="Sheet">Sheet</mat-option>
+      <mat-option value="Block">Block</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <div style="text-align: right"><app-date-range-picker date-range></app-date-range-picker></div>
   </div>
   <div style="text-align:center">
     <apx-chart
