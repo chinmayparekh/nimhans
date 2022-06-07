@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AssetService } from './assetdiv.service';
 import { DatePipe } from '@angular/common';
 import { TurnAroundTimeService } from '../turn-around-time/turn-around-time.service';
@@ -22,7 +22,7 @@ export class AssetdivComponent implements OnInit {
   newCategories=[];
   numMonths : Number;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]; //Used to get Xaxis
-  //@Input() showToggle = true;
+  @Input() showToggle = true;
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 

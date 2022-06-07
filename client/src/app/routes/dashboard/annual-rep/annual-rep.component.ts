@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { TurnAroundTimeService } from '../turn-around-time/turn-around-time.service';
-import {ChartComponent,ApexAxisChartSeries,ApexChart,ApexXAxis,ApexTitleSubtitle} from "ng-apexcharts";
+import {ChartComponent,ApexAxisChartSeries,ApexChart,ApexXAxis,ApexTitleSubtitle, ApexPlotOptions} from "ng-apexcharts";
 import { start } from 'repl';
 import { AssetService } from '../assetdiv/assetdiv.service';
 import { AnnualRepService } from './annual-rep.service';
@@ -18,13 +18,16 @@ export class AnnualRepComponent implements OnInit {
   specType: string;
   startDate:any;
   endDate:any;
-  newdata=[]; 
+  newdata=[];
+  data1=[]; //Internal Samples
+  data2 = []; //External Samples
   newCategories=[];
   numMonths : Number;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]; //Used to get Xaxis
-
+  // @Input() plotOptions: ApexPlotOptions;
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  public plotOptions: Partial<ApexPlotOptions>;
 
   constructor(private turnAroundTimeService: TurnAroundTimeService, private assetService: AssetService,private datepipe: DatePipe, private annualrepService: AnnualRepService) {}
 
@@ -44,7 +47,8 @@ export class AnnualRepComponent implements OnInit {
     {
       this.startDate = dates[0];
       this.endDate = dates[1];
-      // this.newdata=[];
+      this.data1=[];
+      this.data2 = [];
       this.newCategories=[];
       this.sendReq(this.startDate, this.endDate, this.specType); //Sends HTTP GET Request to get Sample Data
       console.log("cat", this.newCategories);
@@ -81,11 +85,12 @@ export class AnnualRepComponent implements OnInit {
         ],
       }
     };
+    
   }
 
   private sendReq(startd :any , endd : any, specType:string):void
   {
-    var assetNumber=0;
+    var assetNumber =0;
     console.log("specType ", this.specType);
     //HTTP GET Request
     switch(specType){
@@ -118,7 +123,13 @@ export class AnnualRepComponent implements OnInit {
     //dynamically creating x-axis
     this.getCatergories(specType);
       console.log("newcat ", this.newCategories);
-    console.log("old ", data, " new ", this.newdata);
+
+    for(var i =0; i<this.numMonths; i++)
+    {
+      this.data1.push(data[i].internalCasesCount);
+      this.data2.push(data[i].externalCasesCount);
+    }
+    console.log("data1 ", this.data1, " data2 ", this.data2);
     this.populateChart();
     });
   }
@@ -188,12 +199,16 @@ export class AnnualRepComponent implements OnInit {
 
     private populateChart():void
     {
-      console.log("new data ",this.newdata);
+      // console.log("new data ",this.newdata);
       this.chartOptions = {
         series: [
           {
-            name: "Samples",
-            data: this.newdata,
+            name: "Internal Samples",
+            data: this.data1,
+          },
+          {
+            name: "External Samples",
+            data: this.data2,
           }
         ],
         chart: {
