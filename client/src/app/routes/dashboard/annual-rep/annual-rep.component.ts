@@ -58,6 +58,30 @@ export class AnnualRepComponent implements OnInit {
     this.specType = event.target.value;
   }
 
+  private initializeChart():void
+  {
+    this.chartOptions = {
+      series: [
+        {
+          name: "Samples",
+          data: [],
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "bar",
+      },
+      title: {
+        text: "Report"
+      },
+      xaxis: {
+        categories: [
+          'Choose Asset Type',
+        ],
+      }
+    };
+  }
+
   private sendReq(startd :any , endd : any, specType:string):void
   {
     console.log("specType ", this.specType);
@@ -68,60 +92,76 @@ export class AnnualRepComponent implements OnInit {
     var startMonth = parseInt(startd.slice(5,7)) -1;
 
     //dynamically creating x-axis
-    for(var i=0; i<this.numMonths; i++)
-    {
-      //Getting X-Axis
-      //newCategories[] is x-axis labels 
-      if( startMonth == 11) //If month is Dec, reset to Jan
-        {
-          this.newCategories.push(this.months[startMonth]);
-          console.log("new pushed", this.newCategories);
-          startMonth=0;
-          continue;
-        }
-        else 
-        {
-          this.newCategories.push(this.months[startMonth]);
-          console.log("new pushed", this.newCategories, " startMonth ", startMonth);
-          startMonth++;
-        }
-    }
+    this.getCatergories(specType);
+      console.log("newcat ", this.newCategories);
     console.log("old ", data, " new ", this.newdata);
     this.populateChart();
     });
   }
 
-    private initializeChart():void
+  private getCatergories(specType :string): void
+  {
+    switch(specType)
     {
-      this.chartOptions = {
-        series: [
-          {
-            name: "Samples",
-            data: [],
-          }
-        ],
-        chart: {
-          height: 350,
-          type: "bar",
-        },
-        title: {
-          text: "Sample Chart"
-        },
-        xaxis: {
-          categories: [
-            'Tumor',
-            'Nerve',
-            'Muscle',
-            'Multiple Biopsies',
-            'Epilepsy',
+      case "Block":
+        {
+          this.newCategories = [
             'Block',
-            'Slides',
-            'Other',
-          ],
+            'Blocks'
+          ];
+          break;
         }
-      };
+        case "Case":
+        {
+          this.newCategories = [
+            'Blocks',
+            'Epilepsy surgery',
+            'Muscle biopsy',
+            'Nerve biopsy',
+            'NULL',
+            'Others',
+            'Sheet',
+            'Skin biopsy',
+            'Slides for Opinion',
+            'Surgical Biopsy',
+          ];
+          break;
+        }
+        case "Sample":
+        {
+          this.newCategories = [
+            'Epilepsy Surgery',
+            'Multiple Biopsies',
+            'Muscle Biopsy',
+            'Nerve Biopsy',
+            'NULL',
+            'Others',
+            'Sheet',
+            'Skin Biopsy',
+            'Surgical Biopsy',
+            'Tissue',
+          ];
+          break;
+        }
+        case "Slide":
+          {
+            this.newCategories = [
+              'Block',
+              'Blocks',
+              'Epilepsy surgery',
+              'Muscle biopsy',
+              'Nerve biopsy',
+              'Skin biopsy',
+              'Slides for Opinion',
+              'Surgical Biopsy',
+              'Tissue',
+            ];
+            break;
+          }
+
     }
 
+  }
 
     private populateChart():void
     {
@@ -138,19 +178,10 @@ export class AnnualRepComponent implements OnInit {
           type: "bar",
         },
         title: {
-          text: "Sample Chart"
+          text: "Report"
         },
         xaxis: {
-          categories: [
-            'Tumor',
-            'Nerve',
-            'Muscle',
-            'Multiple Biopsies',
-            'Epilepsy',
-            'Block',
-            'Slides',
-            'Other',
-          ],
+          categories: this.newCategories,
         }
       };
       
