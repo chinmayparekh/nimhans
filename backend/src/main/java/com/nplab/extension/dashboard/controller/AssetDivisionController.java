@@ -37,4 +37,13 @@ public class AssetDivisionController {
         return ReportAssets.findDivision(from, to, specimen);
 
     }
+
+    @GetMapping(path = "/report/{assetType}/{startTime}/{endTime}")
+    public List<InternalAndExternalCases> getAssetDivision(@PathVariable("assetType") int assetType, @PathVariable("startTime") String from, @PathVariable("endTime") String to, @RequestHeader(name = "Authorization") String token) {
+        token = token.substring(7);
+        if (jwtUtil.isTokenExpired(token)) {
+            throw new AccessDeniedException("Unauthorized");
+        }
+        return ReportAssets.generateReports(from, to, assetType);
+    }
 }

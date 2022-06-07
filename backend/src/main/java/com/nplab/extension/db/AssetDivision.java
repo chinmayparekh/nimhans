@@ -30,6 +30,9 @@ public class AssetDivision {
     @Column(name = "specimen")
     private String specimen;
 
+    @Column(name = "asset_type")
+    private int asset_type;
+
     @Column(name = "start_time")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime startTime;

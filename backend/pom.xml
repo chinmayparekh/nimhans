@@ -85,8 +85,7 @@
 		    <artifactId>spring-boot-devtools</artifactId>
 		    <scope>runtime</scope>
 		    <optional>true</optional>
-</dependency>
-	</dependencies>
+		</dependency>	</dependencies>
 
 	<build>
 		<plugins>
