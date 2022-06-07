@@ -118,14 +118,11 @@ public class InternalAndExternalCases {
         return sampleCount;
     }
 
-    public static List<InternalAndExternalCases> Report(String from, String to, int assetType, AssetSummaryDao assetSummaryDao) {
+    public static List<String> getSpecimens(int assetType) {
         List<String> Assets;
         switch (assetType) {
             case 0:
                 Assets = Case;
-                break;
-            case 1:
-                Assets = Sample;
                 break;
             case 2:
                 Assets = Block;
@@ -137,6 +134,11 @@ public class InternalAndExternalCases {
                 Assets = Sample;
                 break;
         }
+        return Assets;
+    }
+
+    public static List<InternalAndExternalCases> Report(String from, String to, int assetType, AssetSummaryDao assetSummaryDao) {
+        List<String> Assets = getSpecimens(assetType);
         List<InternalAndExternalCases> sampleCount = new ArrayList<>();
         for (String specimenType : Assets) {
             sampleCount.add(new InternalAndExternalCases(to, from, assetType, specimenType, assetSummaryDao));
