@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.sql.ResultSet;
+import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -91,6 +93,7 @@ public class AssetSummaryDao {
 
         return query.getResultList().get(0);
     }
+
     public long countByDateAndCriteriab(String criteria, String startTime, String endTime) {
         @SuppressWarnings("unchecked")
         Query<Long> query = (Query<Long>) entityManager
@@ -103,13 +106,10 @@ public class AssetSummaryDao {
     }
 
     public long countSamplesByCriteria(String criteria) {
-        Query<Long> query = (Query<Long>) entityManager
-                .createQuery(
-                        "SELECT COUNT(a) FROM AssetDivision a WHERE " + criteria
-                );
-
-        return query.getResultList().get(0);
-
+        Query query = (Query) entityManager.createQuery("SELECT a.npNumber FROM AssetDivision a WHERE " + criteria);
+        List<String> npNumbers = query.getResultList();
+        HashSet<String> hashSet = new HashSet<>(npNumbers);
+        return hashSet.size();
     }
 
     /**
@@ -164,7 +164,7 @@ public class AssetSummaryDao {
         return query.getResultList().get(0);
     }
 
-    public long testAssetDivision(){
+    public long testAssetDivision() {
         Query<Long> query = (Query<Long>) entityManager
                 .createQuery(
                         "SELECT COUNT(a) FROM AssetSummary a "
