@@ -2,21 +2,14 @@
 
 <mat-card>
   <div class="flex-container">
-  <!-- <div>
-    <select (change) = "selectChangeHandler($event)">
-      <option value="Tissue" >Tissue</option>
-      <option value="Sheet" >Sheet</option>
-      <option value="Block" >Block</option>
-    </select>
-  </div> -->
-  <!-- <div style="text-align: left;"> -->
   <div style="text-align: left">
   <mat-form-field appearance="fill">
     <mat-label>Choose an Asset</mat-label>
     <mat-select [(value)]="specType">
-      <mat-option value="Tissue">Tissue</mat-option>
-      <mat-option value="Sheet">Sheet</mat-option>
+      <mat-option value="Case">Case</mat-option>
+      <mat-option value="Sample">Sample</mat-option>
       <mat-option value="Block">Block</mat-option>
+      <mat-option value="Slide">Slide</mat-option>
     </mat-select>
   </mat-form-field>
   </div>

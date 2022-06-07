@@ -4,6 +4,7 @@ import { TurnAroundTimeService } from '../turn-around-time/turn-around-time.serv
 import {ChartComponent,ApexAxisChartSeries,ApexChart,ApexXAxis,ApexTitleSubtitle} from "ng-apexcharts";
 import { start } from 'repl';
 import { AssetService } from '../assetdiv/assetdiv.service';
+import { AnnualRepService } from './annual-rep.service';
 
 export type ChartOptions = {series: ApexAxisChartSeries; chart: ApexChart; xaxis: ApexXAxis; title: ApexTitleSubtitle;};
 
@@ -25,7 +26,7 @@ export class AnnualRepComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private turnAroundTimeService: TurnAroundTimeService, private assetService: AssetService,private datepipe: DatePipe) {}
+  constructor(private turnAroundTimeService: TurnAroundTimeService, private assetService: AssetService,private datepipe: DatePipe, private annualrepService: AnnualRepService) {}
 
   ngOnInit(): void 
   {
@@ -84,9 +85,32 @@ export class AnnualRepComponent implements OnInit {
 
   private sendReq(startd :any , endd : any, specType:string):void
   {
+    var assetNumber=0;
     console.log("specType ", this.specType);
     //HTTP GET Request
-    this.assetService.getAnnualRep(startd, endd, specType).subscribe(data => {
+    switch(specType){
+      case "Case":
+      {
+        assetNumber = 0;
+        break;
+      }
+      case "Sample":
+      {
+        assetNumber = 1;
+        break;
+      }
+      case "Block":
+      {
+        assetNumber = 2;
+        break;
+      }
+      case "Slide":
+      {
+        assetNumber = 3;
+        break;
+      }    
+    }
+    this.annualrepService.getAnnualRep(startd, endd, assetNumber).subscribe(data => {
     this.numMonths = data.length;
     this.newdata =[...data];
     var startMonth = parseInt(startd.slice(5,7)) -1;
@@ -106,8 +130,8 @@ export class AnnualRepComponent implements OnInit {
       case "Block":
         {
           this.newCategories = [
+            'Blocks',
             'Block',
-            'Blocks'
           ];
           break;
         }
@@ -131,14 +155,13 @@ export class AnnualRepComponent implements OnInit {
         {
           this.newCategories = [
             'Epilepsy Surgery',
-            'Multiple Biopsies',
             'Muscle Biopsy',
             'Nerve Biopsy',
             'NULL',
             'Others',
-            'Sheet',
             'Skin Biopsy',
             'Surgical Biopsy',
+            'Multiple Biopsies',
             'Tissue',
           ];
           break;
@@ -146,15 +169,15 @@ export class AnnualRepComponent implements OnInit {
         case "Slide":
           {
             this.newCategories = [
-              'Block',
               'Blocks',
               'Epilepsy surgery',
               'Muscle biopsy',
               'Nerve biopsy',
+              'Tissue',
               'Skin biopsy',
               'Slides for Opinion',
               'Surgical Biopsy',
-              'Tissue',
+              'Block',
             ];
             break;
           }
