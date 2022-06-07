@@ -38,7 +38,8 @@ public class InternalAndExternalCases {
             "Others",
             "Skin biopsy",
             "Surgical Biopsy",
-            "Multiple biopsies"
+            "Multiple biopsies",
+            "Tissue"
     );
     private static List<String> Block = List.of("Blocks", "Block");
     private static List<String> Slide = List.of("Blocks", "Epilepsy surgery", "Muscle biopsy",

@@ -106,8 +106,8 @@ export class AnnualRepComponent implements OnInit {
       case "Block":
         {
           this.newCategories = [
+            'Blocks',
             'Block',
-            'Blocks'
           ];
           break;
         }
@@ -131,14 +131,13 @@ export class AnnualRepComponent implements OnInit {
         {
           this.newCategories = [
             'Epilepsy Surgery',
-            'Multiple Biopsies',
             'Muscle Biopsy',
             'Nerve Biopsy',
             'NULL',
             'Others',
-            'Sheet',
             'Skin Biopsy',
             'Surgical Biopsy',
+            'Multiple Biopsies',
             'Tissue',
           ];
           break;
@@ -146,15 +145,15 @@ export class AnnualRepComponent implements OnInit {
         case "Slide":
           {
             this.newCategories = [
-              'Block',
               'Blocks',
               'Epilepsy surgery',
               'Muscle biopsy',
               'Nerve biopsy',
+              'Tissue',
               'Skin biopsy',
               'Slides for Opinion',
               'Surgical Biopsy',
-              'Tissue',
+              'Block',
             ];
             break;
           }
