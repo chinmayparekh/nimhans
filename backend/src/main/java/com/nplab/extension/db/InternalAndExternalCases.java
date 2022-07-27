@@ -4,12 +4,9 @@ import com.nplab.extension.dao.AssetSummaryDao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
-import org.joda.time.DateTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,20 +31,14 @@ public class InternalAndExternalCases {
     );
     private static List<String> Sample = List.of("Epilepsy surgery", "Muscle biopsy",
             "Nerve biopsy",
-            "NULL",
             "Others",
             "Skin biopsy",
             "Surgical Biopsy",
-            "Multiple biopsies",
-            "Tissue"
+            "Multiple biopsies"
     );
     private static List<String> Block = List.of("Blocks", "Block");
-    private static List<String> Slide = List.of("Blocks", "Epilepsy surgery", "Muscle biopsy",
-            "Nerve biopsy",
-            "Tissue",
-            "Skin biopsy",
+    private static List<String> Slide = List.of("Blocks",
             "Slides for Opinion",
-            "Surgical Biopsy",
             "Block"
     );
     public static Map<String, Integer> months;
