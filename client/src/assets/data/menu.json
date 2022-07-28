@@ -22,11 +22,6 @@
           "type": "link"
         },
         {
-          "route": "assetdiv",
-          "name": "assetdiv",
-          "type": "link"
-        },
-        {
           "route": "annual-rep",
           "name": "annual-rep",
           "type": "link"
