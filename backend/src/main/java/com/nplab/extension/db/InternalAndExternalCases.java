@@ -22,7 +22,6 @@ public class InternalAndExternalCases {
 
     private static List<String> Case = List.of("Blocks", "Epilepsy surgery", "Muscle biopsy",
             "Nerve biopsy",
-            "NULL",
             "Others",
             "Sheet",
             "Skin biopsy",
