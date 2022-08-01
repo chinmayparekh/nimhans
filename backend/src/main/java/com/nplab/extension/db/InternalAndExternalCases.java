@@ -22,15 +22,12 @@ public class InternalAndExternalCases {
 
     private static List<String> Case = List.of("Blocks", "Epilepsy surgery", "Muscle biopsy",
             "Nerve biopsy",
-            "Others",
-            "Sheet",
             "Skin biopsy",
             "Slides for Opinion",
             "Surgical Biopsy"
     );
     private static List<String> Sample = List.of("Epilepsy surgery", "Muscle biopsy",
             "Nerve biopsy",
-            "Others",
             "Skin biopsy",
             "Surgical Biopsy",
             "Multiple biopsies"
