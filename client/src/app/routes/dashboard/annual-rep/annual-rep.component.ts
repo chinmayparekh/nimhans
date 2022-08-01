@@ -141,8 +141,8 @@ export class AnnualRepComponent implements OnInit {
       case "Block":
         {
           this.newCategories = [
+            'OS Blocks',
             'Blocks',
-            'Block',
           ];
           break;
         }
@@ -153,9 +153,6 @@ export class AnnualRepComponent implements OnInit {
             'Epilepsy surgery',
             'Muscle biopsy',
             'Nerve biopsy',
-            'NULL',
-            'Others',
-            'Sheet',
             'Skin biopsy',
             'Slides for Opinion',
             'Surgical Biopsy',
@@ -168,27 +165,18 @@ export class AnnualRepComponent implements OnInit {
             'Epilepsy Surgery',
             'Muscle Biopsy',
             'Nerve Biopsy',
-            'NULL',
-            'Others',
             'Skin Biopsy',
             'Surgical Biopsy',
             'Multiple Biopsies',
-            'Tissue',
           ];
           break;
         }
         case "Slide":
           {
             this.newCategories = [
-              'Blocks',
-              'Epilepsy surgery',
-              'Muscle biopsy',
-              'Nerve biopsy',
-              'Tissue',
-              'Skin biopsy',
+              'OS Blocks',
               'Slides for Opinion',
-              'Surgical Biopsy',
-              'Block',
+              'Blocks',
             ];
             break;
           }
